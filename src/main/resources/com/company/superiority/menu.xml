@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://jmix.io/schema/ui/menu">
+
+    <menu id="acceptance" caption="msg://com.company.superiority/menu_config.acceptance">
+        <item screen="Planin.browse" caption="msg://com.company.superiority.screen.planin/planinBrowse.menu"/>
+    </menu>
+    <menu id="directories" caption="msg://com.company.superiority/menu_config.directories">
+        <menu id="Provider" caption="msg://com.company.superiority/menu_config.Provider">
+            <item screen="Client.browse" caption="msg://com.company.superiority/menu_config.Client.browse"/>
+        </menu>
+        <menu id="Gates" caption="msg://com.company.superiority/menu_config.Gates">
+            <item screen="Gate.browse" caption="msg://com.company.superiority/menu_config.Gate.browse"/>
+        </menu>
+    </menu>
+
+</menu-config>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
+        caption="msg://planinBrowse.caption"
+        focusComponent="planinsTable">
+    <data readOnly="true">
+        <collection id="planinsDc"
+                    class="com.company.superiority.entity.Planin">
+            <fetchPlan extends="_base">
+                <property name="provider" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="planinsDl">
+                <query>
+                    <![CDATA[select e from Planin e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="lookupSelectAction"
+                caption="msg:///actions.Select"
+                icon="LOOKUP_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="lookupCancelAction"
+                caption="msg:///actions.Cancel"
+                icon="LOOKUP_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true">
+        <tabSheet width="100%">
+            <tab id="tab_planned"
+                 caption="Запланировано"
+                 margin="true"
+                 spacing="true">
+                <label value="Запланировано"/>
+                <popupView minimizedValue="Зарегистрировано"
+                           hideOnMouseOut="false">
+                    <vbox width="100%" height="100%" >
+                        <form dataContainer="planinsDc">
+                            <maskedField property="vehnum"
+                                       description="Vehicle number" mask="U###UU"/>
+                            <textField property="fio"
+                                       description="FIO"/>
+                            <maskedField property="phone"
+                                       description="phone" mask="+7(###) ###-##-##"/>
+                            <popupButton id="capacity"
+                                         caption="Грузоподъемность"
+                                         showActionIcons="true">
+                                <actions>
+                                    <action id="popupCapacity1"
+                                            caption="Газель"/>
+                                    <action id="popupCapacity2"
+                                            caption="Фура"/>
+                                </actions>
+                            </popupButton>
+                        </form>
+                        <button
+                                id="createBtn"
+                                caption="Зарегистрировать"/>
+                    </vbox>
+                </popupView>
+                <filter id="filter"
+                        dataLoader="planinsDl">
+                    <properties include=".*"/>
+                </filter>
+                <dataGrid id="planinsTable"
+                          width="100%"
+                          dataContainer="planinsDc">
+                    <actions>
+                        <action id="create" type="create"/>
+                        <action id="edit" type="edit"/>
+                        <action id="remove" type="remove"/>
+                    </actions>
+                    <columns>
+                        <column property="regnum" id="regnum"/>
+                        <column property="ordernum" id="ordernum"/>
+                        <column property="provider" id="provider"/>
+                        <column property="planarrivaldate" id="planarrivaldate"/>
+                        <column property="vehnum" id="vehnum"/>
+                        <column property="capacity" id="capacity"/>
+                        <column property="fio" id="fio"/>
+                        <column property="phone" id="phone"/>
+                        <column property="status" id="status"/>
+                        <column property="state" id="state"/>
+                    </columns>
+                    <simplePagination/>
+                    <buttonsPanel id="buttonsPanel"
+                                  alwaysVisible="true">
+                        <button id="createBtn" action="planinsTable.create"/>
+                        <button id="editBtn" action="planinsTable.edit"/>
+                        <button id="removeBtn" action="planinsTable.remove"/>
+                    </buttonsPanel>
+                </dataGrid>
+            </tab>
+            <tab id="tab_ongates"
+                 caption="На воротах"
+                 margin="true"
+                 spacing="true">
+                <label value="На воротах"/>
+            </tab>
+        </tabSheet>
+
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

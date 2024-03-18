@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.11.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="superiority">
+        <createTable tableName="CLIENT">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_CLIENT"/>
+            </column>
+            <column name="CLIENTCODE" type="INT"/>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="ADDRESS" type="VARCHAR(200)"/>
+            <column name="CONTACTPERSON" type="VARCHAR(100)"/>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="superiority">
+        <createTable tableName="GATE">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_GATE"/>
+            </column>
+            <column name="GATESNUM" type="VARCHAR(5)"/>
+            <column name="FROM_" type="TIME"/>
+            <column name="TO_" type="TIME"/>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="superiority">
+        <createTable tableName="PLANIN">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_PLANIN"/>
+            </column>
+            <column name="REGNUM" type="VARCHAR(10)"/>
+            <column name="ORDERNUM" type="VARCHAR(50)"/>
+            <column name="PLANARRIVALDATE" type="DATETIME"/>
+            <column name="VEHNUM" type="VARCHAR(20)"/>
+            <column name="CAPACITY" type="VARCHAR(5)"/>
+            <column name="FIO" type="VARCHAR(100)"/>
+            <column name="PHONE" type="VARCHAR(20)"/>
+            <column name="STATUS" type="VARCHAR(5)"/>
+            <column name="STATE" type="VARCHAR(5)"/>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="4" author="superiority">
+        <createTable tableName="PLANIN_CLIENT_LINK">
+            <column name="CLIENT_ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_PLANIN_CLIENT_LINK"/>
+            </column>
+            <column name="PLANIN_ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_PLANIN_CLIENT_LINK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="5" author="superiority">
+        <addUniqueConstraint columnNames="CLIENTCODE" constraintName="IDX_CLIENT_UNQ_CLIENTCODE" tableName="CLIENT"/>
+    </changeSet>
+    <changeSet id="6" author="superiority">
+        <addUniqueConstraint columnNames="GATESNUM" constraintName="IDX_GATE_UNQ_GATESNUM" tableName="GATE"/>
+    </changeSet>
+    <changeSet id="7" author="superiority">
+        <addForeignKeyConstraint baseColumnNames="CLIENT_ID" baseTableName="PLANIN_CLIENT_LINK"
+                                 constraintName="FK_PLACLI_ON_CLIENT" referencedColumnNames="ID"
+                                 referencedTableName="CLIENT"/>
+    </changeSet>
+    <changeSet id="8" author="superiority">
+        <addForeignKeyConstraint baseColumnNames="PLANIN_ID" baseTableName="PLANIN_CLIENT_LINK"
+                                 constraintName="FK_PLACLI_ON_PLANIN" referencedColumnNames="ID"
+                                 referencedTableName="PLANIN"/>
+    </changeSet>
+</databaseChangeLog>
