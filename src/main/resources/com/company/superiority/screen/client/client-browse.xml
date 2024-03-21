@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://jmix.io/schema/ui/window"
-        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
         caption="msg://clientBrowse.caption"
         focusComponent="clientsTable">
     <data readOnly="true">
@@ -17,6 +16,10 @@
     <facets>
         <dataLoadCoordinator auto="true"/>
         <screenSettings id="settingsFacet" auto="true"/>
+        <timer id="timer"
+               autostart="true"
+               delay="30000"
+               repeating="true"/>
     </facets>
     <actions>
         <action id="lookupSelectAction"
@@ -35,6 +38,7 @@
                 dataLoader="clientsDl">
             <properties include=".*"/>
         </filter>
+        <label id="rowCountLabel"/>
         <dataGrid id="clientsTable"
                   width="100%"
                   dataContainer="clientsDc">
@@ -42,6 +46,7 @@
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
+                <action id="excel" caption="Export" type="excelExport" icon="font-icon:SAVE"/>
             </actions>
             <columns>
                 <column property="clientcode" id="clientcode"/>
