@@ -46,7 +46,7 @@
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
-                <action id="excel" caption="Export" type="excelExport" icon="font-icon:SAVE"/>
+                <action id="excelExport" type="excelExport"/>
             </actions>
             <columns>
                 <column property="clientcode" id="clientcode"/>
@@ -60,6 +60,7 @@
                 <button id="createBtn" action="clientsTable.create"/>
                 <button id="editBtn" action="clientsTable.edit"/>
                 <button id="removeBtn" action="clientsTable.remove"/>
+                <button id="clientBtn" action="clientsTable.excelExport"/>
             </buttonsPanel>
         </dataGrid>
         <hbox id="lookupActions" spacing="true" visible="false">
