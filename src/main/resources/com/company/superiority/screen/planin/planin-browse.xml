@@ -19,6 +19,10 @@
     <facets>
         <dataLoadCoordinator auto="true"/>
         <screenSettings id="settingsFacet" auto="true"/>
+        <timer id="refresh"
+               autostart="true"
+               delay="30000"
+               repeating="true"/>
     </facets>
     <actions>
         <action id="lookupSelectAction"
@@ -61,7 +65,7 @@
                             </popupButton>
                         </form>
                         <button
-                                id="createBtn"
+                                id="registerBtn"
                                 caption="Зарегистрировать"/>
                     </vbox>
                 </popupView>

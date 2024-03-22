@@ -47,6 +47,7 @@
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
                 <action id="excelExport" type="excelExport"/>
+                <action id="refresh" type="refresh"/>
             </actions>
             <columns>
                 <column property="clientcode" id="clientcode"/>

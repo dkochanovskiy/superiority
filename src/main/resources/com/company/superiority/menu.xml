@@ -3,7 +3,6 @@
 
     <menu id="acceptance" caption="msg://com.company.superiority/menu_config.acceptance">
         <item screen="Planin.browse" caption="msg://com.company.superiority.screen.planin/planinBrowse.menu"/>
-        <item screen="BlankScreen" caption="msg://com.company.superiority.screen.blank/blankScreen.caption"/>
     </menu>
     <menu id="directories" caption="msg://com.company.superiority/menu_config.directories">
         <menu id="Provider" caption="msg://com.company.superiority/menu_config.Provider">
