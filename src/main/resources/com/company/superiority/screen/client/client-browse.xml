@@ -16,10 +16,6 @@
     <facets>
         <dataLoadCoordinator auto="true"/>
         <screenSettings id="settingsFacet" auto="true"/>
-        <timer id="timer"
-               autostart="true"
-               delay="30000"
-               repeating="true"/>
     </facets>
     <actions>
         <action id="lookupSelectAction"
@@ -38,7 +34,6 @@
                 dataLoader="clientsDl">
             <properties include=".*"/>
         </filter>
-        <label id="rowCountLabel"/>
         <dataGrid id="clientsTable"
                   width="100%"
                   dataContainer="clientsDc">

@@ -12,6 +12,16 @@
             <loader id="planinsDl">
                 <query>
                     <![CDATA[select e from Planin e]]>
+                    <condition>
+                        <and>
+                            <c:jpql>
+                                <c:where>e.status = :status1</c:where>
+                            </c:jpql>
+                            <c:jpql>
+                                <c:where>e.status = :status2</c:where>
+                            </c:jpql>
+                        </and>
+                    </condition>
                 </query>
             </loader>
         </collection>
@@ -20,6 +30,10 @@
         <dataLoadCoordinator auto="true"/>
         <screenSettings id="settingsFacet" auto="true"/>
         <timer id="refresh"
+               autostart="true"
+               delay="30000"
+               repeating="true"/>
+        <timer id="timer"
                autostart="true"
                delay="30000"
                repeating="true"/>
@@ -73,6 +87,7 @@
                         dataLoader="planinsDl">
                     <properties include=".*"/>
                 </filter>
+                <label id="rowCountLabel"/>
                 <dataGrid id="planinsTable"
                           width="100%"
                           dataContainer="planinsDc">

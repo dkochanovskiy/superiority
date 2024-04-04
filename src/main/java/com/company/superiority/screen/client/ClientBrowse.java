@@ -19,12 +19,6 @@ import org.springframework.context.ApplicationContext;
 public class ClientBrowse extends StandardLookup<Client> {
 
     @Autowired
-    protected Timer timer;
-
-    @Autowired
-    protected Label<String> rowCountLabel;
-
-    @Autowired
     private CollectionContainer<Client> clientsDc;
 
     @Autowired
@@ -38,17 +32,6 @@ public class ClientBrowse extends StandardLookup<Client> {
 
     @Autowired
     protected Actions actions;
-
-    @Subscribe(id = "clientsDl", target = Target.DATA_LOADER)
-    public void onClientsDlPostLoad(final CollectionLoader.PostLoadEvent<Client> event) {
-        int entities = event.getLoadedEntities().size();
-        rowCountLabel.setValue("Number of strings: " + entities);
-    }
-
-    @Subscribe("timer")
-    protected void onTimerTick(Timer.TimerActionEvent event) {
-        rowCountLabel.setValue("Number of strings: " + clientsDc.getItems().size());
-    }
 
     @Subscribe
     protected void onInit(InitEvent event) {
